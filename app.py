@@ -73,15 +73,131 @@ st.markdown("""
 
 
 /* =========================================
-   สีตัวอักษร
+   สีตัวอักษรหลัก
    ========================================= */
 
-h1, h2, h3, p, label {
-    color: #F1F5F9;
+.stApp {
+    color: #EAF4FF !important;
 }
 
+/* หัวข้อทั้งหมด */
+
+.stApp h1,
+.stApp h2,
+.stApp h3,
+.stApp h4 {
+    color: #FACC15 !important;
+}
+
+/* ข้อความทั่วไป */
+
+.stApp p,
+.stApp label,
+.stApp li {
+    color: #EAF4FF !important;
+}
+
+/* ข้อความ Markdown */
+
+.stApp [data-testid="stMarkdownContainer"] {
+    color: #EAF4FF !important;
+}
+
+.stApp [data-testid="stMarkdownContainer"] p,
+.stApp [data-testid="stMarkdownContainer"] li,
+.stApp [data-testid="stMarkdownContainer"] strong {
+    color: #EAF4FF !important;
+}
+
+/* Caption */
+
+.stApp [data-testid="stCaptionContainer"],
+.stApp [data-testid="stCaptionContainer"] * {
+    color: #BFDBFE !important;
+}
+
+/* เส้นคั่น */
+
 hr {
-    border-color: rgba(255,255,255,0.2);
+    border-color: rgba(255,255,255,0.2) !important;
+}
+
+
+/* =========================================
+   Sidebar
+   ========================================= */
+
+section[data-testid="stSidebar"] {
+    background: rgba(5,20,40,0.98);
+}
+
+/* หัวข้อ Sidebar */
+
+section[data-testid="stSidebar"] h1,
+section[data-testid="stSidebar"] h2,
+section[data-testid="stSidebar"] h3 {
+    color: #FACC15 !important;
+}
+
+/* ข้อความ Sidebar */
+
+section[data-testid="stSidebar"] p,
+section[data-testid="stSidebar"] label,
+section[data-testid="stSidebar"] span,
+section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] {
+    color: #EAF4FF !important;
+}
+
+/* ข้อความภายในกล่อง Info */
+
+section[data-testid="stSidebar"] [data-testid="stAlert"] p {
+    color: #EAF4FF !important;
+}
+
+
+/* =========================================
+   Dropdown / Selectbox
+   ========================================= */
+
+div[data-baseweb="select"] > div {
+    background-color: #12314A !important;
+    border-color: #FACC15 !important;
+}
+
+/* ข้อความที่แสดงใน Selectbox */
+
+div[data-baseweb="select"] span,
+div[data-baseweb="select"] input {
+    color: #EAF4FF !important;
+    -webkit-text-fill-color: #EAF4FF !important;
+}
+
+/* พื้นหลังรายการ Dropdown */
+
+div[data-baseweb="popover"],
+div[data-baseweb="popover"] ul,
+div[data-baseweb="popover"] li {
+    background-color: #12314A !important;
+    color: #EAF4FF !important;
+}
+
+/* ข้อความในรายการ Dropdown */
+
+div[data-baseweb="popover"] li *,
+div[data-baseweb="popover"] [role="option"] * {
+    color: #EAF4FF !important;
+}
+
+/* เมื่อชี้เมาส์ */
+
+div[data-baseweb="popover"] li:hover,
+div[data-baseweb="popover"] [role="option"]:hover {
+    background-color: #1E4260 !important;
+}
+
+div[data-baseweb="popover"] li:hover *,
+div[data-baseweb="popover"] [role="option"]:hover * {
+    color: #FACC15 !important;
 }
 
 
@@ -127,12 +243,25 @@ div[data-testid="stMetric"] {
     padding: 18px !important;
 }
 
-div[data-testid="stMetricLabel"] {
+/* ชื่อ KPI */
+
+div[data-testid="stMetricLabel"],
+div[data-testid="stMetricLabel"] * {
     color: #FDE68A !important;
 }
 
-div[data-testid="stMetricValue"] {
+/* ตัวเลข KPI */
+
+div[data-testid="stMetricValue"],
+div[data-testid="stMetricValue"] * {
     color: #FACC15 !important;
+}
+
+/* ข้อความเพิ่มเติม KPI */
+
+div[data-testid="stMetricDelta"],
+div[data-testid="stMetricDelta"] * {
+    color: #EAF4FF !important;
 }
 
 
@@ -265,7 +394,7 @@ div[data-testid="stDownloadButton"] button {
     transition: all 0.25s ease !important;
 }
 
-/* บังคับสีข้อความและไอคอนภายในปุ่ม */
+/* ข้อความและไอคอนในปุ่ม */
 
 div[data-testid="stDownloadButton"] button,
 div[data-testid="stDownloadButton"] button * {
@@ -305,15 +434,6 @@ div[data-testid="stDownloadButton"] button:active {
     background: #EAB308 !important;
 
     border-color: #EAB308 !important;
-}
-
-
-/* =========================================
-   Sidebar
-   ========================================= */
-
-section[data-testid="stSidebar"] {
-    background: rgba(5,20,40,0.95);
 }
 
 
@@ -369,6 +489,8 @@ section[data-testid="stSidebar"] {
 .energy-table tbody tr:hover td {
 
     background-color: #1E4260 !important;
+
+    color: #FFFFFF !important;
 
     transition: background-color 0.2s ease;
 }
@@ -639,11 +761,12 @@ st.caption(
 st.divider()
 
 
+
 # =====================================================
 # 9. กำหนดตำแหน่งไฟล์ CSV
 # =====================================================
 
-DATA_DIR = Path(__file__).parent
+DATA_DIR = Path(__file__).resolve().parent
 
 
 # =====================================================
@@ -665,22 +788,41 @@ def load_data():
         "priority": "priority_dashboard.csv"
     }
 
+    # ค้นหาไฟล์ CSV ทั้งหมดในโฟลเดอร์โปรเจกต์
+    available_files = {}
+
+    for file_path in DATA_DIR.rglob("*.csv"):
+        available_files[file_path.name.strip().lower()] = file_path
+
     data = {}
+    missing_files = []
 
     for key, filename in filenames.items():
 
-        file_path = DATA_DIR / filename
+        file_path = available_files.get(filename.lower())
 
-        if not file_path.exists():
-
-            raise FileNotFoundError(
-                f"ไม่พบไฟล์ {filename}"
-            )
+        if file_path is None:
+            missing_files.append(filename)
+            continue
 
         data[key] = pd.read_csv(file_path)
 
+    # แจ้งชื่อไฟล์ที่หาไม่พบ
+    if missing_files:
+
+        raise FileNotFoundError(
+            "ไม่พบไฟล์ต่อไปนี้: "
+            + ", ".join(missing_files)
+            + "\n\nไฟล์ CSV ที่พบในโปรเจกต์: "
+            + ", ".join(sorted(available_files.keys()))
+        )
+
     return data
 
+
+# =====================================================
+# ตรวจสอบและโหลดข้อมูล
+# =====================================================
 
 try:
 
@@ -692,13 +834,14 @@ except Exception as error:
         f"เกิดข้อผิดพลาดในการอ่านข้อมูล: {error}"
     )
 
-    st.info(
-        "ตรวจสอบว่าโฟลเดอร์ dashboard_data "
-        "อยู่ในตำแหน่งเดียวกับไฟล์ app.py"
-    )
+    st.info("""
+    กรุณาตรวจสอบว่าไฟล์ CSV ทั้ง 9 ไฟล์
+    ถูกอัปโหลดขึ้น GitHub Repository แล้ว
+
+    และตรวจสอบชื่อไฟล์ให้ตรงกับที่ระบบกำหนด
+    """)
 
     st.stop()
-
 
 # =====================================================
 # 11. แยกข้อมูลแต่ละตาราง
