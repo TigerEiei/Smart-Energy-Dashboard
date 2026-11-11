@@ -1,4 +1,3 @@
-
 # =====================================================
 # SMART ENERGY DASHBOARD
 # ปริศนาค่าไฟฟ้าที่เพิ่มสูงขึ้น
@@ -27,7 +26,7 @@ st.set_page_config(
 
 
 # =====================================================
-# 3. CSS ตกแต่งเว็บไซต์
+# 3. CSS ตกแต่งเว็บไซต์ (ปรับปรุงสีตัวอักษรให้อ่านง่ายขึ้น)
 # =====================================================
 
 st.markdown("""
@@ -57,6 +56,7 @@ st.markdown("""
         );
 
     background-attachment: fixed;
+    color: #EAF4FF;
 }
 
 
@@ -73,51 +73,30 @@ st.markdown("""
 
 
 /* =========================================
-   สีตัวอักษรหลัก
+   สีตัวอักษรหลักและหัวข้อ
    ========================================= */
 
-.stApp {
-    color: #EAF4FF !important;
-}
-
-/* หัวข้อทั้งหมด */
-
-.stApp h1,
-.stApp h2,
-.stApp h3,
-.stApp h4 {
+h1, h2, h3, h4, h5, h6 {
     color: #FACC15 !important;
 }
 
-/* ข้อความทั่วไป */
-
-.stApp p,
-.stApp label,
-.stApp li {
-    color: #EAF4FF !important;
+p, span, label, li {
+    color: #EAF4FF;
 }
 
-/* ข้อความ Markdown */
-
-.stApp [data-testid="stMarkdownContainer"] {
-    color: #EAF4FF !important;
-}
-
-.stApp [data-testid="stMarkdownContainer"] p,
-.stApp [data-testid="stMarkdownContainer"] li,
-.stApp [data-testid="stMarkdownContainer"] strong {
+/* ข้อความใน Markdown Container */
+[data-testid="stMarkdownContainer"], 
+[data-testid="stMarkdownContainer"] p {
     color: #EAF4FF !important;
 }
 
 /* Caption */
-
-.stApp [data-testid="stCaptionContainer"],
-.stApp [data-testid="stCaptionContainer"] * {
+[data-testid="stCaptionContainer"],
+[data-testid="stCaptionContainer"] * {
     color: #BFDBFE !important;
 }
 
 /* เส้นคั่น */
-
 hr {
     border-color: rgba(255,255,255,0.2) !important;
 }
@@ -131,24 +110,24 @@ section[data-testid="stSidebar"] {
     background: rgba(5,20,40,0.98);
 }
 
-/* หัวข้อ Sidebar */
-
 section[data-testid="stSidebar"] h1,
 section[data-testid="stSidebar"] h2,
 section[data-testid="stSidebar"] h3 {
     color: #FACC15 !important;
 }
 
-/* ข้อความ Sidebar */
-
 section[data-testid="stSidebar"] p,
 section[data-testid="stSidebar"] label,
 section[data-testid="stSidebar"] span,
-section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] {
+section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p {
     color: #EAF4FF !important;
 }
 
-/* ข้อความภายในกล่อง Info */
+/* กล่อง Info ใน Sidebar */
+section[data-testid="stSidebar"] [data-testid="stAlert"] {
+    background-color: #12314A !important;
+    border: 1px solid #FACC15 !important;
+}
 
 section[data-testid="stSidebar"] [data-testid="stAlert"] p {
     color: #EAF4FF !important;
@@ -164,15 +143,11 @@ div[data-baseweb="select"] > div {
     border-color: #FACC15 !important;
 }
 
-/* ข้อความที่แสดงใน Selectbox */
-
 div[data-baseweb="select"] span,
 div[data-baseweb="select"] input {
     color: #EAF4FF !important;
     -webkit-text-fill-color: #EAF4FF !important;
 }
-
-/* พื้นหลังรายการ Dropdown */
 
 div[data-baseweb="popover"],
 div[data-baseweb="popover"] ul,
@@ -181,14 +156,10 @@ div[data-baseweb="popover"] li {
     color: #EAF4FF !important;
 }
 
-/* ข้อความในรายการ Dropdown */
-
 div[data-baseweb="popover"] li *,
 div[data-baseweb="popover"] [role="option"] * {
     color: #EAF4FF !important;
 }
-
-/* เมื่อชี้เมาส์ */
 
 div[data-baseweb="popover"] li:hover,
 div[data-baseweb="popover"] [role="option"]:hover {
@@ -207,57 +178,29 @@ div[data-baseweb="popover"] [role="option"]:hover * {
 
 div[data-testid="stMetric"],
 .table-container {
-
     box-sizing: border-box !important;
-
     border: 1.5px solid rgba(250,204,21,0.85) !important;
-
     border-radius: 15px !important;
-
-    box-shadow:
-        0 0 6px rgba(250,204,21,0.30),
-        0 0 15px rgba(250,204,21,0.15),
-        inset 0 0 8px rgba(250,204,21,0.04);
-
-    animation: none !important;
-
-    transition:
-        box-shadow 0.3s ease,
-        border-color 0.3s ease,
-        transform 0.3s ease;
+    box-shadow: 0 0 6px rgba(250,204,21,0.30), 0 0 15px rgba(250,204,21,0.15);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
 }
-
-
-/* =========================================
-   KPI
-   ========================================= */
 
 div[data-testid="stMetric"] {
-
     position: relative;
-
     width: 100% !important;
-
     background: rgba(18,49,74,0.96) !important;
-
     padding: 18px !important;
 }
-
-/* ชื่อ KPI */
 
 div[data-testid="stMetricLabel"],
 div[data-testid="stMetricLabel"] * {
     color: #FDE68A !important;
 }
 
-/* ตัวเลข KPI */
-
 div[data-testid="stMetricValue"],
 div[data-testid="stMetricValue"] * {
     color: #FACC15 !important;
 }
-
-/* ข้อความเพิ่มเติม KPI */
 
 div[data-testid="stMetricDelta"],
 div[data-testid="stMetricDelta"] * {
@@ -270,38 +213,15 @@ div[data-testid="stMetricDelta"] * {
    ========================================= */
 
 div[data-testid="stPlotlyChart"] {
-
     width: 100% !important;
-
     box-sizing: border-box !important;
-
     position: relative;
-
     background: rgba(18,49,74,0.90) !important;
-
     border: 1.5px solid rgba(250,204,21,0.85) !important;
-
     border-radius: 15px !important;
-
-    box-shadow:
-        0 0 6px rgba(250,204,21,0.30),
-        0 0 15px rgba(250,204,21,0.15);
-
+    box-shadow: 0 0 6px rgba(250,204,21,0.30), 0 0 15px rgba(250,204,21,0.15);
     padding: 0 !important;
-
     margin-bottom: 20px !important;
-
-    overflow: visible !important;
-
-    animation: none !important;
-}
-
-div[data-testid="stPlotlyChart"]::before,
-div[data-testid="stPlotlyChart"]::after {
-
-    content: none !important;
-
-    display: none !important;
 }
 
 
@@ -310,61 +230,22 @@ div[data-testid="stPlotlyChart"]::after {
    ========================================= */
 
 .table-container {
-
     position: relative;
-
     display: block;
-
     width: 100%;
-
     max-width: 100%;
-
     box-sizing: border-box;
-
-    isolation: isolate;
-
     overflow-x: auto;
-
     background: #0F2940 !important;
-
     border-radius: 15px !important;
-
     margin-bottom: 20px;
 }
-
-
-/* =========================================
-   ปิดไฟวิ่งและเอฟเฟกต์เก่า
-   ========================================= */
-
-div[data-testid="stMetric"]::before,
-div[data-testid="stMetric"]::after,
-.table-container::before,
-.table-container::after {
-
-    content: none !important;
-
-    display: none !important;
-
-    animation: none !important;
-}
-
-
-/* =========================================
-   Hover กรอบ
-   ========================================= */
 
 div[data-testid="stMetric"]:hover,
 div[data-testid="stPlotlyChart"]:hover,
 .table-container:hover {
-
     border-color: #FDE047 !important;
-
-    box-shadow:
-        0 0 10px rgba(250,204,21,0.50),
-        0 0 24px rgba(250,204,21,0.25),
-        inset 0 0 10px rgba(250,204,21,0.06);
-
+    box-shadow: 0 0 10px rgba(250,204,21,0.50), 0 0 24px rgba(250,204,21,0.25);
     transform: translateY(-2px);
 }
 
@@ -374,66 +255,31 @@ div[data-testid="stPlotlyChart"]:hover,
    ========================================= */
 
 div[data-testid="stDownloadButton"] button {
-
     background: #12314A !important;
-
     color: #FACC15 !important;
-
     border: 2px solid #FACC15 !important;
-
     border-radius: 12px !important;
-
     padding: 10px 22px !important;
-
     font-weight: bold !important;
-
-    box-shadow:
-        0 0 8px rgba(250,204,21,0.35),
-        0 0 16px rgba(250,204,21,0.18);
-
+    box-shadow: 0 0 8px rgba(250,204,21,0.35);
     transition: all 0.25s ease !important;
 }
 
-/* ข้อความและไอคอนในปุ่ม */
-
 div[data-testid="stDownloadButton"] button,
 div[data-testid="stDownloadButton"] button * {
-
     color: #FACC15 !important;
-
     font-weight: bold !important;
 }
 
-/* เมื่อชี้เมาส์ */
-
 div[data-testid="stDownloadButton"] button:hover {
-
     background: #FACC15 !important;
-
     border-color: #FDE047 !important;
-
-    box-shadow:
-        0 0 12px rgba(250,204,21,0.65),
-        0 0 24px rgba(250,204,21,0.35);
-
+    color: #071B33 !important;
     transform: translateY(-2px);
 }
 
-/* สีข้อความเมื่อชี้เมาส์ */
-
-div[data-testid="stDownloadButton"] button:hover,
 div[data-testid="stDownloadButton"] button:hover * {
-
     color: #071B33 !important;
-}
-
-/* เมื่อกดปุ่ม */
-
-div[data-testid="stDownloadButton"] button:active {
-
-    background: #EAB308 !important;
-
-    border-color: #EAB308 !important;
 }
 
 
@@ -442,57 +288,35 @@ div[data-testid="stDownloadButton"] button:active {
    ========================================= */
 
 .energy-table {
-
     width: 100%;
-
     border-collapse: collapse;
-
     background-color: #0F2940;
-
     color: #EAF4FF;
-
     font-size: 14px;
 }
 
 .energy-table th {
-
     background-color: #12314A !important;
-
     color: #FACC15 !important;
-
     font-weight: bold;
-
     padding: 13px;
-
     text-align: center;
-
     border: 1px solid #526078;
-
     white-space: nowrap;
 }
 
 .energy-table td {
-
     background-color: #0F2940 !important;
-
     color: #EAF4FF !important;
-
     padding: 11px;
-
     text-align: center;
-
     border: 1px solid #29465E;
-
     white-space: nowrap;
 }
 
 .energy-table tbody tr:hover td {
-
     background-color: #1E4260 !important;
-
     color: #FFFFFF !important;
-
-    transition: background-color 0.2s ease;
 }
 
 
@@ -501,99 +325,26 @@ div[data-testid="stDownloadButton"] button:active {
    ========================================= */
 
 @keyframes hoverFloat {
-
-    0% {
-        transform: translateY(0px) rotate(-8deg);
-    }
-
-    50% {
-        transform: translateY(-45px) rotate(8deg);
-    }
-
-    100% {
-        transform: translateY(0px) rotate(-8deg);
-    }
+    0% { transform: translateY(0px) rotate(-8deg); }
+    50% { transform: translateY(-45px) rotate(8deg); }
+    100% { transform: translateY(0px) rotate(-8deg); }
 }
 
 .energy-float {
-
     position: fixed;
-
     z-index: 0;
-
     pointer-events: none;
-
     user-select: none;
-
     opacity: 0.13;
-
-    filter: drop-shadow(
-        0 0 8px rgba(56,189,248,0.12)
-    );
-
     animation: hoverFloat ease-in-out infinite;
 }
 
-.energy-1 {
-    top: 10%;
-    left: 2%;
-    font-size: 180px;
-    animation-duration: 8s;
-}
-
-.energy-2 {
-    top: 35%;
-    left: 15%;
-    font-size: 150px;
-    animation-duration: 10s;
-}
-
-.energy-3 {
-    top: 12%;
-    right: 2%;
-    font-size: 200px;
-    animation-duration: 9s;
-}
-
-.energy-4 {
-    top: 60%;
-    right: 10%;
-    font-size: 170px;
-    animation-duration: 11s;
-}
-
-.energy-5 {
-    top: 78%;
-    left: 5%;
-    font-size: 190px;
-    animation-duration: 9s;
-}
-
-.energy-6 {
-    top: 85%;
-    right: 2%;
-    font-size: 150px;
-    animation-duration: 10s;
-}
-
-
-/* =========================================
-   ลดการเคลื่อนไหวตามการตั้งค่าอุปกรณ์
-   ========================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-    .energy-float {
-        animation: none !important;
-    }
-
-    div[data-testid="stMetric"],
-    div[data-testid="stPlotlyChart"],
-    .table-container {
-        animation: none !important;
-        transition: none !important;
-    }
-}
+.energy-1 { top: 10%; left: 2%; font-size: 180px; animation-duration: 8s; }
+.energy-2 { top: 35%; left: 15%; font-size: 150px; animation-duration: 10s; }
+.energy-3 { top: 12%; right: 2%; font-size: 200px; animation-duration: 9s; }
+.energy-4 { top: 60%; right: 10%; font-size: 170px; animation-duration: 11s; }
+.energy-5 { top: 78%; left: 5%; font-size: 190px; animation-duration: 9s; }
+.energy-6 { top: 85%; right: 2%; font-size: 150px; animation-duration: 10s; }
 
 </style>
 """, unsafe_allow_html=True)
