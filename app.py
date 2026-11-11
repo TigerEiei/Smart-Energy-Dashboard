@@ -26,7 +26,7 @@ st.set_page_config(
 
 
 # =====================================================
-# 3. CSS ตกแต่งเว็บไซต์ (ปรับปรุงสีตัวอักษรให้อ่านง่ายขึ้น)
+# 3. CSS ตกแต่งเว็บไซต์ (แก้ไขสีตัวหนังสือในกล่อง Info ให้เข้มขึ้น)
 # =====================================================
 
 st.markdown("""
@@ -59,22 +59,12 @@ st.markdown("""
     color: #EAF4FF;
 }
 
-
-/* =========================================
-   พื้นที่เนื้อหา
-   ========================================= */
-
 .block-container {
     position: relative;
     z-index: 2;
     padding-top: 2rem;
     max-width: 100%;
 }
-
-
-/* =========================================
-   สีตัวอักษรหลักและหัวข้อ
-   ========================================= */
 
 h1, h2, h3, h4, h5, h6 {
     color: #FACC15 !important;
@@ -84,19 +74,16 @@ p, span, label, li {
     color: #EAF4FF;
 }
 
-/* ข้อความใน Markdown Container */
 [data-testid="stMarkdownContainer"], 
 [data-testid="stMarkdownContainer"] p {
     color: #EAF4FF !important;
 }
 
-/* Caption */
 [data-testid="stCaptionContainer"],
 [data-testid="stCaptionContainer"] * {
     color: #BFDBFE !important;
 }
 
-/* เส้นคั่น */
 hr {
     border-color: rgba(255,255,255,0.2) !important;
 }
@@ -123,14 +110,17 @@ section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p {
     color: #EAF4FF !important;
 }
 
-/* กล่อง Info ใน Sidebar */
+/* ปรับแต่งกล่อง Info ใน Sidebar ให้ตัวหนังสือข้างในเป็นสีเข้ม อ่านง่าย */
 section[data-testid="stSidebar"] [data-testid="stAlert"] {
-    background-color: #12314A !important;
+    background-color: #EAF4FF !important;
     border: 1px solid #FACC15 !important;
+    border-radius: 10px !important;
 }
 
-section[data-testid="stSidebar"] [data-testid="stAlert"] p {
-    color: #EAF4FF !important;
+section[data-testid="stSidebar"] [data-testid="stAlert"] p,
+section[data-testid="stSidebar"] [data-testid="stAlert"] span,
+section[data-testid="stSidebar"] [data-testid="stAlert"] strong {
+    color: #071B33 !important;
 }
 
 
@@ -348,7 +338,6 @@ div[data-testid="stDownloadButton"] button:hover * {
 
 </style>
 """, unsafe_allow_html=True)
-
 
 # =====================================================
 # 4. อีโมจิลอยด้านหลัง
