@@ -26,7 +26,7 @@ st.set_page_config(
 
 
 # =====================================================
-# 3. CSS ตกแต่งเว็บไซต์ (ปรับปรุงใหม่ ไม่กระทบเมนูด้านบน)
+# 3. CSS ตกแต่งเว็บไซต์ (ปรับปรุงกรอบกราฟ Plotly และเอฟเฟกต์ Hover)
 # =====================================================
 
 st.markdown("""
@@ -195,7 +195,7 @@ div[data-testid="stMetricDelta"] * {
 
 
 /* =========================================
-   กรอบกราฟ Plotly
+   กรอบกราฟ Plotly (แก้ไขปัญหาขอบบนหายและเอฟเฟกต์ Hover)
    ========================================= */
 
 div[data-testid="stPlotlyChart"] {
@@ -206,8 +206,10 @@ div[data-testid="stPlotlyChart"] {
     border: 1.5px solid rgba(250,204,21,0.85) !important;
     border-radius: 15px !important;
     box-shadow: 0 0 6px rgba(250,204,21,0.30), 0 0 15px rgba(250,204,21,0.15);
-    padding: 0 !important;
-    margin-bottom: 20px !important;
+    padding: 10px !important;
+    margin-bottom: 25px !important;
+    overflow: hidden !important; /* ป้องกันไม่ให้กราฟทะลุขอบ และแก้ปัญหาขอบบนหายตอน Hover */
+    transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
 }
 
 
@@ -227,11 +229,19 @@ div[data-testid="stPlotlyChart"] {
     margin-bottom: 20px;
 }
 
+
+/* =========================================
+   Hover กรอบร่วมกัน (Metric, กราฟ Plotly, ตาราง)
+   ========================================= */
+
 div[data-testid="stMetric"]:hover,
 div[data-testid="stPlotlyChart"]:hover,
 .table-container:hover {
     border-color: #FDE047 !important;
-    box-shadow: 0 0 10px rgba(250,204,21,0.50), 0 0 24px rgba(250,204,21,0.25);
+    box-shadow: 
+        0 0 10px rgba(250,204,21,0.50), 
+        0 0 24px rgba(250,204,21,0.25),
+        inset 0 0 10px rgba(250,204,21,0.06) !important;
     transform: translateY(-2px);
 }
 
