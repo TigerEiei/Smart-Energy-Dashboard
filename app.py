@@ -26,14 +26,14 @@ st.set_page_config(
 
 
 # =====================================================
-# 3. CSS ตกแต่งเว็บไซต์ (แก้ไขสีตัวหนังสือในกล่อง Info ให้เข้มขึ้น)
+# 3. CSS ตกแต่งเว็บไซต์ (ปรับปรุงใหม่ ไม่กระทบเมนูด้านบน)
 # =====================================================
 
 st.markdown("""
 <style>
 
 /* =========================================
-   พื้นหลังหลัก
+   พื้นหลังหลักของแอป
    ========================================= */
 
 .stApp {
@@ -56,7 +56,6 @@ st.markdown("""
         );
 
     background-attachment: fixed;
-    color: #EAF4FF;
 }
 
 .block-container {
@@ -66,21 +65,19 @@ st.markdown("""
     max-width: 100%;
 }
 
-h1, h2, h3, h4, h5, h6 {
+/* สีหัวข้อและข้อความภายในเนื้อหา Dashboard */
+.stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5, .stApp h6 {
     color: #FACC15 !important;
 }
 
-p, span, label, li {
-    color: #EAF4FF;
-}
-
-[data-testid="stMarkdownContainer"], 
-[data-testid="stMarkdownContainer"] p {
+.stApp [data-testid="stMarkdownContainer"] p, 
+.stApp [data-testid="stMarkdownContainer"] li {
     color: #EAF4FF !important;
 }
 
-[data-testid="stCaptionContainer"],
-[data-testid="stCaptionContainer"] * {
+/* Caption */
+.stApp [data-testid="stCaptionContainer"],
+.stApp [data-testid="stCaptionContainer"] * {
     color: #BFDBFE !important;
 }
 
@@ -110,7 +107,7 @@ section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p {
     color: #EAF4FF !important;
 }
 
-/* ปรับแต่งกล่อง Info ใน Sidebar ให้ตัวหนังสือข้างในเป็นสีเข้ม อ่านง่าย */
+/* กล่อง Info ใน Sidebar */
 section[data-testid="stSidebar"] [data-testid="stAlert"] {
     background-color: #EAF4FF !important;
     border: 1px solid #FACC15 !important;
@@ -118,8 +115,7 @@ section[data-testid="stSidebar"] [data-testid="stAlert"] {
 }
 
 section[data-testid="stSidebar"] [data-testid="stAlert"] p,
-section[data-testid="stSidebar"] [data-testid="stAlert"] span,
-section[data-testid="stSidebar"] [data-testid="stAlert"] strong {
+section[data-testid="stSidebar"] [data-testid="stAlert"] span {
     color: #071B33 !important;
 }
 
