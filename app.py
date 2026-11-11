@@ -26,14 +26,14 @@ st.set_page_config(
 
 
 # =====================================================
-# 3. CSS ตกแต่งเว็บไซต์ (ปรับปรุงกรอบกราฟ Plotly และเอฟเฟกต์ Hover)
+# 3. CSS ตกแต่งเว็บไซต์ (แก้ไขเรื่องกรอบกราฟตัดขอบ & Hover เรืองแสง)
 # =====================================================
 
 st.markdown("""
 <style>
 
 /* =========================================
-   พื้นหลังหลักของแอป
+   พื้นหลังหลัก
    ========================================= */
 
 .stApp {
@@ -61,11 +61,12 @@ st.markdown("""
 .block-container {
     position: relative;
     z-index: 2;
-    padding-top: 2rem;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
     max-width: 100%;
 }
 
-/* สีหัวข้อและข้อความภายในเนื้อหา Dashboard */
+/* สีตัวหนังสือหลัก */
 .stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5, .stApp h6 {
     color: #FACC15 !important;
 }
@@ -75,7 +76,6 @@ st.markdown("""
     color: #EAF4FF !important;
 }
 
-/* Caption */
 .stApp [data-testid="stCaptionContainer"],
 .stApp [data-testid="stCaptionContainer"] * {
     color: #BFDBFE !important;
@@ -107,7 +107,6 @@ section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p {
     color: #EAF4FF !important;
 }
 
-/* กล่อง Info ใน Sidebar */
 section[data-testid="stSidebar"] [data-testid="stAlert"] {
     background-color: #EAF4FF !important;
     border: 1px solid #FACC15 !important;
@@ -159,22 +158,33 @@ div[data-baseweb="popover"] [role="option"]:hover * {
 
 
 /* =========================================
-   KPI และกรอบตาราง
+   การกำหนดสไตล์กรอบร่วมกัน (KPI, กราฟ Plotly, ตาราง)
    ========================================= */
 
-div[data-testid="stMetric"],
-.table-container {
-    box-sizing: border-box !important;
-    border: 1.5px solid rgba(250,204,21,0.85) !important;
-    border-radius: 15px !important;
-    box-shadow: 0 0 6px rgba(250,204,21,0.30), 0 0 15px rgba(250,204,21,0.15);
-    transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+/* ปรับระยะห่างภายนอกคอนเทนเนอร์เพื่อไม่ให้โดนขอบแอปตัดเวลา Hover */
+[data-testid="stElementContainer"]:has(div[data-testid="stPlotlyChart"]) {
+    padding: 6px 4px !important;
+    margin-bottom: 15px !important;
 }
 
+div[data-testid="stMetric"],
+div[data-testid="stPlotlyChart"],
+.table-container {
+    box-sizing: border-box !important;
+    border: 1.5px solid rgba(250, 204, 21, 0.85) !important;
+    border-radius: 15px !important;
+    background: rgba(18, 49, 74, 0.94) !important;
+    box-shadow:
+        0 0 6px rgba(250, 204, 21, 0.30),
+        0 0 15px rgba(250, 204, 21, 0.15),
+        inset 0 0 8px rgba(250, 204, 21, 0.04) !important;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease !important;
+}
+
+/* KPI Metric */
 div[data-testid="stMetric"] {
     position: relative;
     width: 100% !important;
-    background: rgba(18,49,74,0.96) !important;
     padding: 18px !important;
 }
 
@@ -195,21 +205,19 @@ div[data-testid="stMetricDelta"] * {
 
 
 /* =========================================
-   กรอบกราฟ Plotly (แก้ไขปัญหาขอบบนหายและเอฟเฟกต์ Hover)
+   ปรับแต่ง Plotly Chart โดยตรง
    ========================================= */
 
 div[data-testid="stPlotlyChart"] {
-    width: 100% !important;
-    box-sizing: border-box !important;
-    position: relative;
-    background: rgba(18,49,74,0.90) !important;
-    border: 1.5px solid rgba(250,204,21,0.85) !important;
-    border-radius: 15px !important;
-    box-shadow: 0 0 6px rgba(250,204,21,0.30), 0 0 15px rgba(250,204,21,0.15);
-    padding: 10px !important;
-    margin-bottom: 25px !important;
-    overflow: hidden !important; /* ป้องกันไม่ให้กราฟทะลุขอบ และแก้ปัญหาขอบบนหายตอน Hover */
-    transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+    padding: 12px !important;
+    overflow: visible !important;
+}
+
+div[data-testid="stPlotlyChart"] > div,
+div[data-testid="stPlotlyChart"] .js-plotly-plot,
+div[data-testid="stPlotlyChart"] .plot-container {
+    border-radius: 10px !important;
+    background: transparent !important;
 }
 
 
@@ -222,27 +230,25 @@ div[data-testid="stPlotlyChart"] {
     display: block;
     width: 100%;
     max-width: 100%;
-    box-sizing: border-box;
     overflow-x: auto;
     background: #0F2940 !important;
-    border-radius: 15px !important;
     margin-bottom: 20px;
 }
 
 
 /* =========================================
-   Hover กรอบร่วมกัน (Metric, กราฟ Plotly, ตาราง)
+   เอฟเฟกต์ Hover เหมือนกันทุกกล่อง (เรืองแสงทองลอยขึ้น)
    ========================================= */
 
 div[data-testid="stMetric"]:hover,
 div[data-testid="stPlotlyChart"]:hover,
 .table-container:hover {
     border-color: #FDE047 !important;
-    box-shadow: 
-        0 0 10px rgba(250,204,21,0.50), 
-        0 0 24px rgba(250,204,21,0.25),
-        inset 0 0 10px rgba(250,204,21,0.06) !important;
-    transform: translateY(-2px);
+    box-shadow:
+        0 0 12px rgba(250, 204, 21, 0.65),
+        0 0 26px rgba(250, 204, 21, 0.35),
+        inset 0 0 10px rgba(250, 204, 21, 0.08) !important;
+    transform: translateY(-4px) !important;
 }
 
 
